@@ -72,7 +72,7 @@
             <div class="mx-auto text-center mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
                 <h1 class="text-primary display-1" style="font-family: Forum;">DATOS DEL INVITADO</h1>
                 <h4 id="guest-name" style="font-family: 'Thesignature'; font-weight: 500; font-size: 3rem;">[Nombre del Invitado]</h4>
-                <h4 style="font-family: Forum;"> 5 BOLETOS</h4>
+                <h4 id="guest-tickets" style="font-family: Forum;">[Número de Boletos]</h4>
             </div>
         </div>
     </div>
@@ -80,8 +80,9 @@
 
     <script>
         class Invitado {
-            constructor(name) {
+            constructor(name, tickets) {
                 this._name = name || 'Invitado/a';
+                this._tickets = tickets || 'N/A';
             }
 
             get name() {
@@ -92,22 +93,32 @@
                 this._name = newName;
                 document.getElementById('guest-name').textContent = this._name;
             }
+
+            get tickets() {
+                return this._tickets;
+            }
+
+            set tickets(newTickets) {
+                this._tickets = newTickets;
+                document.getElementById('guest-tickets').textContent = this._tickets + ' BOLETOS';
+            }
         }
 
         // Función para obtener parámetros de la URL
         function getQueryParams() {
             const params = new URLSearchParams(window.location.search);
             return {
-                name: params.get('name')
+                name: params.get('name'),
+                tickets: params.get('tickets')
             };
         }
 
-        // Obtén los parámetros de la URL y establece el nombre del invitado
+        // Obtén los parámetros de la URL y establece los valores del invitado
         const params = getQueryParams();
-        const invitado = new Invitado(params.name);
+        const invitado = new Invitado(params.name, params.tickets);
         invitado.name = invitado.name; // Actualiza el nombre en el HTML
+        invitado.tickets = invitado.tickets; // Actualiza los boletos en el HTML
     </script>
-
 
 
 
