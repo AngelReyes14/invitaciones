@@ -43,7 +43,12 @@
             font-weight: normal;
             font-style: normal;
         }
-        
+        @font-face {
+            font-family: 'Joshico';
+            src: url('/assets/fonts/daydream\ FREE.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
 
         body {
             font-family: 'Open Sans', sans-serif;
@@ -56,6 +61,11 @@
         .guest-name {
             font-family: 'Better Saturday', cursive;
         }
+        .guest-title {
+            font-family: 'Joshico';
+            color: rgba(234, 190, 63);
+        }
+
 
         .guest-tickets {
             font-family: 'Forum';
@@ -105,7 +115,7 @@
         </div>
         <div class="container position-relative py-5">
             <div class="mx-auto text-center mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
-                <h1 class="text-primary display-1 guest-tickets">DATOS DEL INVITADO</h1>
+                <h1 class="display-1 guest-title">Datos del invitado</h1>
                 <h4 id="guest-name" class="guest-name" style="font-weight: 500; font-size: 3rem;">[Nombre del Invitado]</h4>
                 <h4 id="guest-tickets" class="guest-tickets">[Número de Boletos]</h4>
             </div>
