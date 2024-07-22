@@ -36,6 +36,12 @@
             font-weight: normal;
             font-style: normal;
         }
+        @font-face {
+            font-family: 'Forum';
+            src: url('/assets/fonts/Forum-Regular.otf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
         
         body {
             font-family: 'Open Sans', sans-serif;
@@ -46,11 +52,11 @@
         }
 
         .guest-name {
-            font-family: 'Better Saturday';
+            font-family: 'Better Saturday', cursive;
         }
 
         .guest-tickets {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Forum';
         }
     </style>
 </head>
@@ -75,9 +81,9 @@
                             <div class="d-inline-block border-end-0 border-start-0 border-secondary p-2 mb-4" style="border-style: double;">
                                 <h4 class="text-white fw-bold mb-0" style="letter-spacing: 5px; font-family: 'Forum';">Nuestra boda</h4>
                             </div>
-                            <h1 class="display-1 text-capitalize text-white mb-3 guest-name"> Migue y Mere </h1>
-                            <div class="d-inline-block border-end-0 border-start-0 border-secondary p-2 mb-5" style="border-style: double;">
-                                <h4 class="text-white fw-bold mb-0" style="letter-spacing: 3px; font-family: 'Forum';">Octubre 05 2024</h4>
+                            <h1 class="display-1 text-capitalize text-white mb-5 guest-name"> Migue y Mere </h1>
+                            <div class="d-inline-block border-end-0 border-start-0 border-secondary p-2 mb-5 " style="border-style: double;">
+                                <h4 class="text-white fw-bold mb-0" style="letter-spacing: 5px; font-family: 'Forum';">Octubre 05 2024</h4>
                             </div>
                         </div>
                     </div>
@@ -98,7 +104,7 @@
         <div class="container position-relative py-5">
             <div class="mx-auto text-center mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
                 <h1 class="text-primary display-1" style="font-family: 'Forum';">DATOS DEL INVITADO</h1>
-                <h4 id="guest-name" class="guest-name" style="font-weight: 500; font-size: 3rem;">[Nombre del Invitado]</h4>
+                <h4 id="guest-tickets" class="guest-tickets" style="font-weight: 500; font-size: 3rem;">[Nombre del Invitado]</h4>
                 <h4 id="guest-tickets" class="guest-tickets">[Número de Boletos]</h4>
             </div>
         </div>
