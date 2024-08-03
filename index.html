@@ -28,6 +28,13 @@
     <!-- Template Stylesheet -->
     <link href="/assets/css/style.css" rel="stylesheet">
 
+    <!-- Audio Player -->
+<audio id="backgroundMusic" autoplay loop>
+    <source src="assets/img/Tu Última Canción (1).mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;500;600&family=Petit+Formal+Script&display=swap');
@@ -254,29 +261,29 @@
         </div>
         <!-- Story End -->
 
-
-        <!--- Wedding Date -->
+<!-- Wedding Date -->
 <div class="container-fluid wedding-date-bg position-relative py-5">
     <div class="position-absolute" style="top: -100px; right: 0;">
-        <img src="img/tamp-bg-1.png" class="img-fluid" alt="">
     </div>
     <div class="position-absolute" style="top: -80px; left: 0; transform: rotate(150deg);">
-        <img src="img/tamp-bg-1.png" class="img-fluid" alt="">
     </div>
     <div class="container py-5 wow zoomIn" data-wow-delay="0.1s">
-        <div class="wedding-date text-center bg-light p-5" style="border-style: double !important; border: 15px solid rgba(128, 64, 0);">
+        <div class="wedding-date text-center p-5" style="border-style: double !important; border: 15px solid rgba(128, 64, 0);">
+            <!-- Imagen de fondo añadida aquí -->
+            
+            <img src="assets/img/fondo.JPG" id="backgroundImage" class="img-fluid" alt="Salon">
             <div class="wedding-date-content">
                 <div class="d-inline-block border-end-0 border-start-0 border-secondary p-2 mb-4" style="border-style: double;">
-                    <h4 class=" fw-bold mb-0 guest-tickets" style="letter-spacing: 3px;">Octubre 5, 2024</h4>
+                    <h4 class="fw-bold mb-0 guest-tickets" style="letter-spacing: 3px;">Octubre 5, 2024</h4>
                 </div>
-                <h1 class="guest-title " style="color:rgba(128, 64, 0) ; font-size: 60px;">Nuestras bodas de oro</h1>
+                <h1 class="guest-title" style="color:rgba(128, 64, 0); font-size: 60px;">Nuestras bodas de oro</h1>
                 <div class="row justify-content-center text-dark mb-5">
                     <div class="col-6 col-sm-3 mb-3 mb-sm-0">
                         <div class="fs-2 guest-tickets" id="days">0</div>
                         <span class="d-block">Días</span>
                     </div>
                     <div class="col-6 col-sm-3 mb-3 mb-sm-0">
-                        <div  class="fs-2 guest-tickets" id="hours">0</div>
+                        <div class="fs-2 guest-tickets" id="hours">0</div>
                         <span class="d-block">Horas</span>
                     </div>
                     <div class="col-6 col-sm-3 mb-3 mb-sm-0">
@@ -289,11 +296,11 @@
                     </div>
                 </div>
             </div>
-           
         </div>
     </div>
 </div>
 <!-- Wedding Date -->
+
 <script>
     // Establecer la fecha del evento
     var eventDate = new Date("October 5, 2024 00:00:00").getTime();
