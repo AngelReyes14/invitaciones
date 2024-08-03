@@ -27,7 +27,6 @@
 
     <!-- Template Stylesheet -->
     <link href="/assets/css/style.css" rel="stylesheet">
-    <script src="https://apis.google.com/js/api.js"></script>
 
 
     <style>
@@ -107,7 +106,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Carousel End -->
 
     <!-- Hello! Start -->
@@ -458,7 +457,7 @@
                     </div>
                 </div>
                 <div class="col-12 text-center wow fadeIn" data-wow-delay="0.1s">
-                    <button class="btn btn-primary btn-primary-outline-0 py-3 px-5">Submit Now</button>
+                    <button class="btn btn-primary btn-primary-outline-0 py-3 px-5" id="submitBtn">Aceptar</button>
                 </div>
             </div>
                 <div class="row g-4">
@@ -587,11 +586,12 @@
             </div>
         </div>
         <!-- Gallery end -->
+        <script src="https://apis.google.com/js/api.js"></script>
         <script>
             // Replace with your client ID
             const CLIENT_ID = 'http://187896020105-834a2b3uqfb9v2f3f63g2mgulbhtov4m.apps.googleusercontent.com';
             const API_KEY = 'AIzaSyDdFoJY4kCB2ChMaOSu-vmPUjxCpNuFI_w';
-            const SHEET_ID = 'YOUR_SHEET_ID'; // ID of the Google Sheet
+            const SHEET_ID = '1h3sne-zGAIOwUeFF9cWzwGTddoWA-K7iJp3b7e04PtQ'; // ID of the Google Sheet
           
             const DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
             const SCOPES = "https://www.googleapis.com/auth/spreadsheets";
@@ -632,14 +632,16 @@
             document.addEventListener('DOMContentLoaded', () => {
               handleClientLoad();
           
-              document.querySelector('.btn-primary').addEventListener('click', () => {
-                const attendance = document.querySelector('input[name="flexRadioDefault"]:checked').nextElementSibling.innerText;
-                const data = {
-                  timestamp: new Date().toISOString(),
-                  attendance: attendance
-                };
-                writeToSheet(data);
-              });
+              document.getElementById('submitBtn').addEventListener('click', () => {
+            const attendance = document.querySelector('input[name="flexRadioDefault"]:checked') 
+                ? document.querySelector('input[name="flexRadioDefault"]:checked').nextElementSibling.innerText 
+                : 'No response';
+            const data = {
+                timestamp: new Date().toISOString(),
+                attendance: attendance
+            };
+            writeToSheet(data);
+        });
             });
           </script>
           
