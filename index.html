@@ -589,9 +589,9 @@
         <script src="https://apis.google.com/js/api.js"></script>
         <script>
             // Replace with your client ID
-            const CLIENT_ID = 'http://187896020105-834a2b3uqfb9v2f3f63g2mgulbhtov4m.apps.googleusercontent.com';
+            const CLIENT_ID = '187896020105-834a2b3uqfb9v2f3f63g2mgulbhtov4m.apps.googleusercontent.com';
             const API_KEY = 'AIzaSyDdFoJY4kCB2ChMaOSu-vmPUjxCpNuFI_w';
-            const SHEET_ID = '1h3sne-zGAIOwUeFF9cWzwGTddoWA-K7iJp3b7e04PtQ'; // ID of the Google Sheet
+            const SHEET_ID = 'https://docs.google.com/spreadsheets/d/1h3sne-zGAIOwUeFF9cWzwGTddoWA-K7iJp3b7e04PtQ/edit?hl=es&pli=1&gid=0#gid=0'; // ID of the Google Sheet
           
             const DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
             const SCOPES = "https://www.googleapis.com/auth/spreadsheets";
@@ -612,22 +612,26 @@
             }
           
             function writeToSheet(data) {
-              const range = 'Sheet1!A1:B1'; // Modify as needed
-              const values = [
-                [data.timestamp, data.attendance]
-              ];
-              const body = {
-                values: values
-              };
-              gapi.client.sheets.spreadsheets.values.append({
-                spreadsheetId: SHEET_ID,
-                range: range,
-                valueInputOption: 'RAW',
-                resource: body
-              }).then((response) => {
-                console.log(`${response.result.updates.updatedCells} cells updated.`);
-              });
-            }
+  const range = 'Sheet1!A1:B1'; // Cambia esto según el rango real
+  const values = [
+    [data.timestamp, data.attendance]
+  ];
+  const body = {
+    values: values
+  };
+
+  gapi.client.sheets.spreadsheets.values.append({
+    spreadsheetId: SHEET_ID,
+    range: range,
+    valueInputOption: 'RAW',
+    resource: body
+  }).then((response) => {
+    console.log(`Cells updated: ${response.result.updates.updatedCells}`);
+  }).catch((error) => {
+    console.error('Error updating sheet:', error);
+  });
+}
+
           
             document.addEventListener('DOMContentLoaded', () => {
               handleClientLoad();
