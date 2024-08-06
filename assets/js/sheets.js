@@ -6,7 +6,7 @@ async function getTurnos() {
   try {
     response = await gapi.client.sheets.spreadsheets.values.get({
       spreadsheetId: SPREADSHEET,
-      range: hoja + "!A3:B3",
+      range: hoja + "!A:B",
     });
   } catch (err) {
     document.getElementById("content").innerText = err.message;
@@ -31,18 +31,14 @@ async function getTurnos() {
 
 async function editTurno(id, contenido) {
   const update = [
-    contenido.id,
-    contenido.cliente,
-    contenido.email,
-    contenido.modelo,
-    contenido.problema,
-    new Date().toISOString(),
-    contenido.comentario,
+    contenido.Nombre,
+    contenido.Situacion,
+    
   ]
   const filaAEditar = parseInt(id)+1;
   response = await gapi.client.sheets.spreadsheets.values.update({
     spreadsheetId: SPREADSHEET,
-    range: `${hoja}!A${filaAEditar}:G${filaAEditar}`,
+    range: `${hoja}!A${filaAEditar}:B${filaAEditar}`,
     values: [update],
     valueInputOption:"USER_ENTERED"
   });

@@ -135,65 +135,27 @@
 
     <!-- Carousel End -->
 
-    <!-- Hello! Start -->
-    <div class="container-fluid position-relative py-5" id="weddingAbout">
-        <div class="position-absolute" style="top: 0px; right: 0;">
-            <img src="/assets/img/" style="width: 120px;" class="img-fluid" alt="">
-        </div>
-        <div class="position-absolute" style="top: 0px; left: 0;">
-            <img src="/assets/img/" style="width: 300px;" class="img-fluid" alt="">
-        </div>
-        <div class="container position-relative py-5">
-            <div class="mx-auto text-center mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
-                <h1 class="guest-title" style="font-size: 50px;">Datos del invitado</h1>
-                <h4 id="guest-name" class="guest-tickets mb-4" style="font-size: 3rem; ">[Nombre del Invitado]</h4>
-                <h4 id="guest-tickets" class="guest-tickets">[Número de Boletos]</h4>
-            </div>
+   <!-- Hello! Start -->
+<div class="container-fluid position-relative py-5" id="weddingAbout">
+    <div class="position-absolute" style="top: 0px; right: 0;">
+        <img src="/assets/img/" style="width: 120px;" class="img-fluid" alt="">
+    </div>
+    <div class="position-absolute" style="top: 0px; left: 0;">
+        <img src="/assets/img/" style="width: 300px;" class="img-fluid" alt="">
+    </div>
+    <div class="container position-relative py-5">
+        <div class="mx-auto text-center mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
+            <h1 class="guest-title" style="font-size: 50px;">Datos del invitado</h1>
+            <h4 id="guest-name" class="guest-tickets mb-4" style="font-size: 3rem;">[Nombre del Invitado]</h4>
+            <h4 id="guest-tickets" class="guest-tickets">[Número de Boletos]</h4>
         </div>
     </div>
-    <!-- Hello! End -->
+</div>
+<!-- Hello! End -->
 
-    <script>
-        class Invitado {
-            constructor(name, tickets) {
-                this._name = name || 'Invitado/a';
-                this._tickets = tickets || 'N/A';
-            }
-
-            get name() {
-                return this._name;
-            }
-
-            set name(newName) {
-                this._name = newName;
-                document.getElementById('guest-name').textContent = this._name;
-            }
-
-            get tickets() {
-                return this._tickets;
-            }
-
-            set tickets(newTickets) {
-                this._tickets = newTickets;
-                document.getElementById('guest-tickets').textContent = this._tickets + ' BOLETOS';
-            }
-        }
-
-        function getQueryParams() {
-            const params = new URLSearchParams(window.location.search);
-            console.log('Params:', params.toString()); // Depura los parámetros
-            return {
-                name: params.get('name'),
-                tickets: params.get('tickets')
-            };
-        }
-
-        const params = getQueryParams();
-        const invitado = new Invitado(params.name, params.tickets);
-        console.log('Invitado:', invitado); // Depura el objeto invitado
-        invitado.name = invitado.name; // Actualiza el nombre en el HTML
-        invitado.tickets = invitado.tickets; // Actualiza los boletos en el HTML
-    </script>
+<script src="https://apis.google.com/js/api.js"></script>
+<script src="auth.js"></script>
+<script src="sheets.js"></script>
 
 
 
@@ -441,49 +403,128 @@
         <!-- Wedding Timeline End -->
 
 
-        <!-- Gallery Start -->
-        <div class="container-fluid gallery position-relative py-5" id="weddingGallery">
-            <div class="position-absolute" style="top: -95px; right: 0;">
-            </div>
-            <div class="position-absolute" style="top: -80px; left: 0; transform: rotate(150deg);">
-            </div>
-            <div class="container position-relative py-5">
-                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
-                    <h1 class="guest-title" style="font-size: 40px; " >Confirmar asistencia</h1>
-                </div>
-                <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="text-center border border-secondary p-4 my-4 position-relative">
-                       
-                        <div class="mt-2">
-                            <div class="row g-2">
-                                <div class="col-lg-6">
-                                    <div class="d-flex justify-content-center">
-                                        <div class="form-check d-flex">
-                                            <input class="form-check-input me-2" type="radio" name="flexRadioDefault" value="Confirmo asistencia">
-                                            <label class="form-check-label text-dark" >
-                                                Confirmo asistencia
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex justify-content-center">
-                                        <div class="form-check d-flex">
-                                            <input class="form-check-input me-2" type="radio" name="flexRadioDefault" value="No asistiré">
-                                            <label class="form-check-label text-dark" >
-                                                No asistiré
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
+              <!-- Gallery Start -->
+    <div class="container-fluid gallery position-relative py-5" id="weddingGallery">
+        <div class="text-center border border-secondary p-4 my-4 position-relative">
+            <div class="mt-2">
+                <div class="row g-2">
+                    <div class="col-lg-6">
+                        <div class="d-flex justify-content-center">
+                            <div class="form-check d-flex">
+                                <input class="form-check-input me-2" type="radio" name="attendance" value="Confirmo asistencia" id="confirmAttendance">
+                                <label class="form-check-label text-dark" for="confirmAttendance">
+                                    Confirmo asistencia
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="d-flex justify-content-center">
+                            <div class="form-check d-flex">
+                                <input class="form-check-input me-2" type="radio" name="attendance" value="No asistiré" id="declineAttendance">
+                                <label class="form-check-label text-dark" for="declineAttendance">
+                                    No asistiré
+                                </label>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 text-center wow fadeIn" data-wow-delay="0.1s">
-                    <button class="btn btn-primary btn-primary-outline-0 py-3 px-5" id="submitBtn">Aceptar</button>
-                </div>
             </div>
+        </div>
+        <div class="col-12 text-center wow fadeIn" data-wow-delay="0.1s">
+            <button class="btn btn-primary btn-primary-outline-0 py-3 px-5" id="submitBtn">Aceptar</button>
+        </div>
+    </div>
+    <!-- Gallery End -->
+
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="auth.js"></script>
+    <script src="sheets.js"></script>
+    <script>
+        // Clasa Invitado y función para obtener parámetros de la URL
+        class Invitado {
+            constructor(name, tickets) {
+                this._name = name || 'Invitado/a';
+                this._tickets = tickets || 'N/A';
+            }
+
+            get name() {
+                return this._name;
+            }
+
+            set name(newName) {
+                this._name = newName;
+                document.getElementById('guest-name').textContent = this._name;
+            }
+
+            get tickets() {
+                return this._tickets;
+            }
+
+            set tickets(newTickets) {
+                this._tickets = newTickets;
+                document.getElementById('guest-tickets').textContent = this._tickets + ' BOLETOS';
+            }
+        }
+
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                name: params.get('name'),
+                tickets: params.get('tickets')
+            };
+        }
+
+        const params = getQueryParams();
+        const invitado = new Invitado(params.name, params.tickets);
+        document.getElementById('guest-name').textContent = invitado.name;
+        document.getElementById('guest-tickets').textContent = `${invitado.tickets} BOLETOS`;
+
+        // Función para agregar datos a la hoja de cálculo
+        async function addDataToSheet(name, situacion) {
+            const values = [
+                [name, situacion]
+            ];
+
+            const response = await gapi.client.sheets.spreadsheets.values.append({
+                spreadsheetId: SPREADSHEET,
+                range: 'Hoja!A:B',
+                valueInputOption: 'RAW',
+                insertDataOption: 'INSERT_ROWS',
+                resource: {
+                    values: values
+                }
+            });
+
+            if (response.status !== 200) {
+                throw new Error('No se pudo agregar los datos a la hoja.');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const submitBtn = document.getElementById('submitBtn');
+
+            submitBtn.addEventListener('click', async () => {
+                const selectedOption = document.querySelector('input[name="attendance"]:checked');
+                
+                if (!selectedOption) {
+                    alert('Por favor, seleccione una opción.');
+                    return;
+                }
+                
+                const situacion = selectedOption.value;
+                const nombre = invitado.name;
+                
+                try {
+                    await addDataToSheet(nombre, situacion);
+                    alert('Datos enviados correctamente.');
+                } catch (error) {
+                    console.error('Error al agregar datos:', error);
+                    alert('Error al enviar los datos.');
+                }
+            });
+        });
+    </script>
                 <div class="row g-4">
                     <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
                         <div class="gallery-item">
