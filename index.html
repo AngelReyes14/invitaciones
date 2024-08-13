@@ -17,6 +17,8 @@
 	<script async defer src="https://apis.google.com/js/api.js" id="gapi"></script>
 	<script async defer src="https://accounts.google.com/gsi/client" id="gis"></script>
     <script async defer src="/assets/js/sheets.js"></script>
+            <script src="/assets/js/auth.js"></script>
+
 
     <title>Mr&Mrs - Wedding Bootstrap Template</title>
 
@@ -98,11 +100,7 @@
 
 <body data-bs-spy="scroll" data-bs-target="#navBar" id="weddingHome">
 
-    <div>
-        <button id="authorize_button" onclick="handleAuthClick()">Iniciar sesión</button>
-        <button id="signout_button" onclick="handleSignoutClick()">Cerrar sesión</button>
-     </div>
-     <script src="/assets/js/auth.js"></script>
+ 
 
     <!-- Spinner Start -->
     <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
@@ -432,17 +430,19 @@
             </div>
         </div>
         <div class="col-12 text-center wow fadeIn" data-wow-delay="0.1s">
-            <button class="btn btn-primary btn-primary-outline-0 py-3 px-5" id="submitBtn">Aceptar</button>
+            <button class="btn btn-primary btn-primary-outline-0 py-3 px-5" id="authorize_button" onclick="handleAuthClick()">Aceptar</button>
+            
         </div>
+        
     </div>
+    
+    
     <!-- Gallery End -->
-
+    
     <script src="https://apis.google.com/js/api.js"></script>
-    <script src="auth.js"></script>
-    <script src="sheets.js"></script>
+    
     <script>
-        // Clasa Invitado y función para obtener parámetros de la URL
-        class Invitado {
+       class Invitado {
             constructor(name, tickets) {
                 this._name = name || 'Invitado/a';
                 this._tickets = tickets || 'N/A';
@@ -480,50 +480,51 @@
         document.getElementById('guest-name').textContent = invitado.name;
         document.getElementById('guest-tickets').textContent = `${invitado.tickets} BOLETOS`;
 
-        // Función para agregar datos a la hoja de cálculo
-        async function addDataToSheet(name, situacion) {
-            const values = [
-                [name, situacion]
-            ];
+        // Ensure that `SPREADSHEET` and `API_KEY` are defined elsewhere in your code
 
-            const response = await gapi.client.sheets.spreadsheets.values.append({
-                spreadsheetId: SPREADSHEET,
-                range: 'Hoja!A:B',
-                valueInputOption: 'RAW',
-                insertDataOption: 'INSERT_ROWS',
-                resource: {
-                    values: values
-                }
-            });
+async function checkIfNameExists(name) {
+  const response = await gapi.client.sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET,
+    range: 'Hoja!A:A'
+  });
 
-            if (response.status !== 200) {
-                throw new Error('No se pudo agregar los datos a la hoja.');
-            }
-        }
+  const range = response.result;
+  if (!range || !range.values || range.values.length == 0) {
+    return false;
+  }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const submitBtn = document.getElementById('submitBtn');
+  return range.values.some(row => row[0] === name);
+}
 
-            submitBtn.addEventListener('click', async () => {
-                const selectedOption = document.querySelector('input[name="attendance"]:checked');
-                
-                if (!selectedOption) {
-                    alert('Por favor, seleccione una opción.');
-                    return;
-                }
-                
-                const situacion = selectedOption.value;
-                const nombre = invitado.name;
-                
-                try {
-                    await addDataToSheet(nombre, situacion);
-                    alert('Datos enviados correctamente.');
-                } catch (error) {
-                    console.error('Error al agregar datos:', error);
-                    alert('Error al enviar los datos.');
-                }
-            });
-        });
+async function addDataToSheet(name, situacion) {
+  if (await checkIfNameExists(name)) {
+    // Mostrar el mensaje de alerta y esperar a que el usuario haga clic en OK
+    alert('El nombre ya está registrado.');
+    return; // Salir de la función si el nombre ya existe
+  }
+
+  const values = [
+    [name, situacion]
+  ];
+
+  const response = await gapi.client.sheets.spreadsheets.values.append({
+    spreadsheetId: SPREADSHEET,
+    range: 'Hoja!A:B',
+    valueInputOption: 'RAW',
+    insertDataOption: 'INSERT_ROWS',
+    resource: {
+      values: values
+    }
+  });
+
+  if (response.status !== 200) {
+    throw new Error('No se pudo agregar los datos a la hoja.');
+  }
+
+  // Mostrar el mensaje de éxito solo después de agregar los datos
+  alert('Datos enviados correctamente.');
+}
+
     </script>
                 <div class="row g-4">
                     <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
