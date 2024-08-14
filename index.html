@@ -430,102 +430,72 @@
             </div>
         </div>
         <div class="col-12 text-center wow fadeIn" data-wow-delay="0.1s">
-            <button class="btn btn-primary btn-primary-outline-0 py-3 px-5" id="authorize_button" onclick="handleAuthClick()">Aceptar</button>
-            <a href="https://wa.me/525572281869?text=Asistiré a la boda, gracias.">Hola</a>
+            <button id="sendMessageBtn" class="btn btn-primary btn-primary-outline-0 py-3 px-5">Aceptar</button>
         </div>
         
     </div>
     
     
     <!-- Gallery End -->
-    
-    <script src="https://apis.google.com/js/api.js"></script>
-    
-    <script>
-       class Invitado {
-            constructor(name, tickets) {
-                this._name = name || 'Invitado/a';
-                this._tickets = tickets || 'N/A';
-            }
 
-            get name() {
-                return this._name;
-            }
 
-            set name(newName) {
-                this._name = newName;
-                document.getElementById('guest-name').textContent = this._name;
-            }
+<script src="https://apis.google.com/js/api.js"></script>
 
-            get tickets() {
-                return this._tickets;
-            }
-
-            set tickets(newTickets) {
-                this._tickets = newTickets;
-                document.getElementById('guest-tickets').textContent = this._tickets + ' BOLETOS';
-            }
+<script>
+    class Invitado {
+        constructor(name, tickets) {
+            this._name = name || 'Invitado/a';
+            this._tickets = tickets || 'N/A';
         }
 
-        function getQueryParams() {
-            const params = new URLSearchParams(window.location.search);
-            return {
-                name: params.get('name'),
-                tickets: params.get('tickets')
-            };
+        get name() {
+            return this._name;
         }
 
-        const params = getQueryParams();
-        const invitado = new Invitado(params.name, params.tickets);
-        document.getElementById('guest-name').textContent = invitado.name;
-        document.getElementById('guest-tickets').textContent = `${invitado.tickets} BOLETOS`;
+        set name(newName) {
+            this._name = newName;
+            document.getElementById('guest-name').textContent = this._name;
+        }
 
-        // Ensure that `SPREADSHEET` and `API_KEY` are defined elsewhere in your code
+        get tickets() {
+            return this._tickets;
+        }
 
-async function checkIfNameExists(name) {
-  const response = await gapi.client.sheets.spreadsheets.values.get({
-    spreadsheetId: SPREADSHEET,
-    range: 'Hoja!A:A'
-  });
-
-  const range = response.result;
-  if (!range || !range.values || range.values.length == 0) {
-    return false;
-  }
-
-  return range.values.some(row => row[0] === name);
-}
-
-async function addDataToSheet(name, situacion) {
-  if (await checkIfNameExists(name)) {
-    // Mostrar el mensaje de alerta y esperar a que el usuario haga clic en OK
-    alert('El nombre ya está registrado.');
-    return; // Salir de la función si el nombre ya existe
-  }
-
-  const values = [
-    [name, situacion]
-  ];
-
-  const response = await gapi.client.sheets.spreadsheets.values.append({
-    spreadsheetId: SPREADSHEET,
-    range: 'Hoja!A:B',
-    valueInputOption: 'RAW',
-    insertDataOption: 'INSERT_ROWS',
-    resource: {
-      values: values
+        set tickets(newTickets) {
+            this._tickets = newTickets;
+            document.getElementById('guest-tickets').textContent = this._tickets + ' BOLETOS';
+        }
     }
-  });
 
-  if (response.status !== 200) {
-    throw new Error('No se pudo agregar los datos a la hoja.');
-  }
+    function getQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            name: params.get('name'),
+            tickets: params.get('tickets')
+        };
+    }
 
-  // Mostrar el mensaje de éxito solo después de agregar los datos
-  alert('Datos enviados correctamente.');
-}
+    const params = getQueryParams();
+    const invitado = new Invitado(params.name, params.tickets);
+    document.getElementById('guest-name').textContent = invitado.name;
+    document.getElementById('guest-tickets').textContent = `${invitado.tickets} BOLETOS`;
 
-    </script>
+    document.getElementById('sendMessageBtn').addEventListener('click', function() {
+        const selectedOption = document.querySelector('input[name="attendance"]:checked');
+
+        if (selectedOption) {
+            const message = encodeURIComponent(`${invitado.name} - ${selectedOption.value}`);
+            const phoneNumber = '525572281869'; // Reemplaza con el número deseado
+            const url = `https://wa.me/${phoneNumber}?text=${message}`;
+
+            // Redirigir a la URL de WhatsApp
+            window.location.href = url;
+        } else {
+            alert('Por favor, selecciona una opción.');
+        }
+    });
+</script>
+
                 <div class="row g-4">
                     <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
                         <div class="gallery-item">
