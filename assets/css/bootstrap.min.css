@@ -3148,6 +3148,17 @@ fieldset:disabled .btn {
     background-color: #fd7575;
     border-color: #fd6d6d
 }
+.btn-ceremonia {
+    color: #ffff;
+    background-color: rgba(234, 190, 63);
+    border-color: rgba(234, 190, 63);
+}
+
+.btn-ceremonia:hover {
+    color:#000;
+    background-color: rgba(234, 190, 63);
+    border-color: rgba(234, 190, 63);
+}
 
 .btn-check:focus+.btn-primary,
 .btn-primary:focus {
@@ -7371,7 +7382,7 @@ fieldset:disabled .btn {
 }
 
 .border-secondary {
-    border-color: rgba(128, 64, 0) !important
+    border-color: #ffff !important
 }
 
 .border-success {
