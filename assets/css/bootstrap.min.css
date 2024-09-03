@@ -7385,6 +7385,9 @@ fieldset:disabled .btn {
     border-color: rgba(234, 190, 63)!important
 }
 
+.border-secondary2 {
+    border-color: #ffff!important
+}
 .border-success {
     border-color: #198754 !important
 }
