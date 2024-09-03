@@ -8411,7 +8411,7 @@ fieldset:disabled .btn {
 }
 
 .bg-primary {
-    background-color: #fd5d5d !important
+    background-color: rgba(234, 190, 63) !important;
 }
 
 .bg-secondary {
