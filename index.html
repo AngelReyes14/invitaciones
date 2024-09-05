@@ -382,6 +382,16 @@
 
 <script src="https://apis.google.com/js/api.js"></script>
 
+<div class="container-fluid position-relative py-5" id="weddingAbout">
+    <div class="container position-relative py-5">
+        <div class="mx-auto text-center mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
+            <h1 class="guest-title" style="font-size: 50px;">Datos del invitado</h1>
+            <h4 id="guest-name" class="guest-tickets mb-4" style="font-size: 30px;">[Nombre del Invitado]</h4>
+            <h4 id="guest-tickets" class="guest-tickets">[Número de Boletos]</h4>
+        </div>
+    </div>
+</div>
+
 <script>
     class Invitado {
         constructor(name, tickets) {
@@ -404,7 +414,8 @@
 
         set tickets(newTickets) {
             this._tickets = newTickets;
-            document.getElementById('guest-tickets').textContent = this._tickets + ' BOLETOS';
+            const ticketText = this._tickets === '1' ? 'BOLETO' : 'BOLETOS';
+            document.getElementById('guest-tickets').textContent = `${this._tickets} ${ticketText}`;
         }
     }
 
@@ -419,7 +430,7 @@
     const params = getQueryParams();
     const invitado = new Invitado(params.name, params.tickets);
     document.getElementById('guest-name').textContent = invitado.name;
-    document.getElementById('guest-tickets').textContent = `${invitado.tickets} BOLETOS`;
+    document.getElementById('guest-tickets').textContent = `${invitado.tickets} ${invitado.tickets === '1' ? 'BOLETO' : 'BOLETOS'}`;
 
     document.getElementById('sendMessageBtn').addEventListener('click', function() {
         const selectedOption = document.querySelector('input[name="attendance"]:checked');
@@ -436,6 +447,8 @@
         }
     });
 </script>
+
+
 <div class="container">
     <div class="row g-4 justify-content-center"> <!-- g-4 para mayor separación -->
         <div class="col-xl-4 col-lg-5 col-md-6 wow fadeIn" data-wow-delay="0.1s">
