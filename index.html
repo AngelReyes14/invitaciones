@@ -115,13 +115,21 @@
         <source src="/assets/img/Tu_ultima_Cancion.mp3" type="audio/mpeg">
         Tu navegador no soporta la reproducción de audio.
     </audio>
-
+    
     <script>
-        document.addEventListener('click', function() {
+        let reproducido = false;
+        window.addEventListener('scroll', function() {
             var audio = document.getElementById('miAudio');
-            if (audio.muted) {
-                audio.muted = false; // Quitar el silencio cuando el usuario interactúa
-                audio.play();
+            
+            // Si el usuario ha hecho scroll y el audio aún no se ha reproducido
+            if (window.scrollY > 1 && !reproducido) {
+                // Activar el sonido cuando se haya hecho scroll
+                audio.muted = false;
+                audio.play().then(() => {
+                    reproducido = true; // Evitar que se vuelva a reproducir
+                }).catch(function(error) {
+                    console.log('Error en la reproducción:', error);
+                });
             }
         });
     </script>
