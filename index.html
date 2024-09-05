@@ -111,11 +111,20 @@
 <body data-bs-spy="scroll" data-bs-target="#navBar" id="weddingHome">
 
    
-    <audio autoplay loop>
+    <audio id="miAudio" autoplay muted>
         <source src="/assets/img/Tu_ultima_Cancion.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
+        Tu navegador no soporta la reproducción de audio.
     </audio>
-    
+
+    <script>
+        document.addEventListener('click', function() {
+            var audio = document.getElementById('miAudio');
+            if (audio.muted) {
+                audio.muted = false; // Quitar el silencio cuando el usuario interactúa
+                audio.play();
+            }
+        });
+    </script>
 
 
     <!-- Spinner Start -->
