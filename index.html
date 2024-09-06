@@ -419,8 +419,16 @@
 
     const params = getQueryParams();
     const invitado = new Invitado(params.name, params.tickets);
-    document.getElementById('guest-name').textContent = invitado.name;
-    document.getElementById('guest-tickets').textContent = `${invitado.tickets} ${invitado.tickets === '1' ? 'BOLETO' : 'BOLETOS'}`;
+
+    // Lógica para ocultar "Datos del invitado" y boletos si el nombre es "Mere y Migue"
+    if (invitado.name === "Mere y Migue" && invitado.tickets === 0) {
+        document.getElementById('guest-title').style.display = 'none';  // Ocultar "Datos del invitado"
+        document.getElementById('guest-name').textContent = 'NOVIOS';   // Mostrar "NOVIOS" en lugar del nombre
+        document.getElementById('guest-tickets').style.display = 'none'; // Ocultar el número de boletos
+    } else {
+        document.getElementById('guest-name').textContent = invitado.name;
+        document.getElementById('guest-tickets').textContent = `${invitado.tickets} ${invitado.tickets === '1' ? 'BOLETO' : 'BOLETOS'}`;
+    }
 
     document.getElementById('sendMessageBtn').addEventListener('click', function() {
         const selectedOption = document.querySelector('input[name="attendance"]:checked');
