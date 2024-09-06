@@ -411,7 +411,7 @@
     function getQueryParams() {
         const params = new URLSearchParams(window.location.search);
         return {
-            name: params.get('name'),
+            name: decodeURIComponent(params.get('name')), // Decodificar espacios y caracteres especiales
             tickets: params.get('tickets')
         };
     }
