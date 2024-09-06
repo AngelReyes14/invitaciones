@@ -154,7 +154,7 @@
 
     <div class="container position-relative py-5">
         <div class="mx-auto text-center mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
-            <h1 id="titulo" class="guest-title guest-title2" style="font-size: 50px;">Datos del invitado</h1>
+            <h1 id="titulo" class="guest-title" style="font-size: 50px;">Datos del invitado</h1>
             <h4 id="guest-name" class="guest-tickets mb-4" style="font-size: 30px;">[Nombre del Invitado]</h4>
             <h4 id="guest-tickets" class="guest-tickets">[Número de Boletos]</h4>
         </div>
@@ -433,7 +433,7 @@
     if (invitado.name === "Novios") {
         document.getElementById('titulo').style.display = 'none';  // Ocultar título
         document.getElementById('guest-tickets').style.display = 'none'; // Ocultar boletos
-        document.getElementById('guest-title2').classList.add('guest-title'); // Agregar clase "guest-title" a "guest-name"
+        document.getElementById('guest-name').classList.add('guest-title2'); // Agregar clase "guest-title" a "guest-name"
     }
 </script>
 
