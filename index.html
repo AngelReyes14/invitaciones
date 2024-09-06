@@ -429,12 +429,13 @@
     document.getElementById('guest-name').textContent = invitado.name;
     document.getElementById('guest-tickets').textContent = `${invitado.tickets} ${invitado.tickets === '1' ? 'BOLETO' : 'BOLETOS'}`;
 
-    // Condición para "NOVIOS"
     if (invitado.name === "Novios") {
         document.getElementById('titulo').style.display = 'none';  // Ocultar título
         document.getElementById('guest-tickets').style.display = 'none'; // Ocultar boletos
-        document.getElementById('guest-name').classList.add('guest-title2'); // Agregar clase "guest-title" a "guest-name"
+        document.getElementById('guest-name').style.fontSize = '30px'; // Aplicar estilo específico
+        document.getElementById('guest-name').style.color = 'red'; // Ejemplo de cambio de color
     }
+
 </script>
 
 <div class="container">
