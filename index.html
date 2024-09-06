@@ -148,7 +148,7 @@
 
     <div class="container position-relative py-5">
         <div class="mx-auto text-center mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
-            <h1 class="guest-title" style="font-size: 50px;">Datos del invitado</h1>
+            <h1 id="titulo" class="guest-title" style="font-size: 50px;">Datos del invitado</h1>
             <h4 id="guest-name" class="guest-tickets mb-4" style="font-size: 30px;">[Nombre del Invitado]</h4>
             <h4 id="guest-tickets" class="guest-tickets">[Número de Boletos]</h4>
         </div>
@@ -420,13 +420,16 @@
     const invitado = new Invitado(params.name, params.tickets);
 
     // Verificar si el nombre es "Mere y Migue" y si el número de boletos es igual a 0
-    if (invitado.name === "Mere_y_Migue" && invitado.tickets === "0") {
-        document.getElementById('guest-title').style.display = 'none';  // Ocultar "Datos del invitado"
+    if (invitado.name === "Mere y Migue" && invitado.tickets === "0") {
+        document.getElementById('titulo').style.display = 'none';  // Ocultar "Datos del invitado"
         document.getElementById('guest-name').textContent = 'NOVIOS';   // Mostrar "NOVIOS" en lugar del nombre
         document.getElementById('guest-tickets').style.display = 'none'; // Ocultar el número de boletos
-    } else {
-        document.getElementById('guest-name').textContent = invitado.name;
-        document.getElementById('guest-tickets').textContent = `${invitado.tickets} ${invitado.tickets === '1' ? 'BOLETO' : 'BOLETOS'}`;
+    } 
+    
+    // Verificar si el nombre es "NOVIOS"
+    if (invitado.name === "NOVIOS") {
+        document.getElementById('titulo').style.display = 'none';  // Ocultar título
+        document.getElementById('guest-tickets').style.display = 'none'; // Ocultar boletos
     }
 
     document.getElementById('sendMessageBtn').addEventListener('click', function() {
