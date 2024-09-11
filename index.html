@@ -429,15 +429,31 @@
     document.getElementById('guest-name').textContent = invitado.name;
     document.getElementById('guest-tickets').textContent = `${invitado.tickets} ${invitado.tickets === '1' ? 'BOLETO' : 'BOLETOS'}`;
 
+    // Aplicar estilos específicos si el invitado es "Novios"
     if (invitado.name === "Novios") {
-        document.getElementById('titulo').style.display = 'none';  // Ocultar título
+        document.getElementById('titulo').style.display = 'none'; // Ocultar título
         document.getElementById('guest-tickets').style.display = 'none'; // Ocultar boletos
         document.getElementById('guest-name').style.fontSize = '80px'; // Aplicar estilo específico
-        document.getElementById('guest-name').style.fontFamily = 'Joshico'; // Ejemplo de cambio de color
-        document.getElementById('guest-name').style.color = 'rgba(234, 190, 63)'; // Ejemplo de cambio de color
+        document.getElementById('guest-name').style.fontFamily = 'Joshico'; // Cambiar fuente
+        document.getElementById('guest-name').style.color = 'rgba(234, 190, 63)'; // Cambiar color
     }
-   
+
+    document.getElementById('sendMessageBtn').addEventListener('click', function() {
+        const selectedOption = document.querySelector('input[name="attendance"]:checked');
+
+        if (selectedOption) {
+            const message = encodeURIComponent(`${invitado.name} - ${selectedOption.value}`);
+            const phoneNumber = '525572281869'; // Reemplaza con el número deseado
+            const url = `https://wa.me/${phoneNumber}?text=${message}`;
+
+            // Redirigir a la URL de WhatsApp
+            window.location.href = url;
+        } else {
+            alert('Por favor, selecciona una opción.');
+        }
+    });
 </script>
+
 
 <div class="container">
     <div class="row g-4 justify-content-center"> <!-- g-4 para mayor separación -->
@@ -466,7 +482,7 @@
         </div>
     </div>
 </div>
-
+x
 
     </div>
 <div class="container py-7 mb-7" >
